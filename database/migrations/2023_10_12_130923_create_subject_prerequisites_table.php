@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subjects', function (Blueprint $table) {
+        Schema::create('subject_prerequisites', function (Blueprint $table) {
             $table->id();
-            $table->string('subject_code')->nullable();
-            $table->string('description')->nullable();
-            $table->string('unit')->nullable();
+            $table->foreignId('subject_id')->constrained('subjects');
+            $table->foreignId('prerequisite_id')->constrained('subjects');
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subjects');
+        Schema::dropIfExists('subject_prerequisites');
     }
 };

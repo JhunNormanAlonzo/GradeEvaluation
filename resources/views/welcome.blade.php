@@ -1,4 +1,4 @@
-<x-master-layout>
+<x-guest-layout>
   @section('content')
   <div class="container">
 
@@ -53,4 +53,4 @@
 </div>
   @endsection
 
-</x-master-layout>
+</x-guest-layout>

@@ -14,19 +14,7 @@
 <body id="page-top">
 
     <div id="wrapper">
-        <x-sidebar></x-sidebar>
-        <div id="content-wrapper" class="d-flex flex-column">
-            <div id="content">
-                <x-navbar></x-navbar>
-                <div class="container-fluid">
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        @yield('title')
-                    </div>
-
-                    @yield('content')
-                </div>
-            </div>
-        </div>
+        @yield('content')
     </div>
 
     @include('sweetalert::alert')

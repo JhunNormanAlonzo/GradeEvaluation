@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Semester;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SemesterController extends Controller
 {
@@ -11,7 +13,14 @@ class SemesterController extends Controller
      */
     public function index()
     {
-        //
+        $semesters = Semester::all();
+
+        $title = 'Delete!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
+        return view('admin.semester.index', compact('semesters'));
+
+
     }
 
     /**
@@ -19,7 +28,7 @@ class SemesterController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.semester.create');
     }
 
     /**
@@ -27,7 +36,16 @@ class SemesterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:semesters,name'
+        ]);
+
+        Semester::create([
+            'name' => $request->name
+        ]);
+
+        Alert::success('Success', 'Created Successfull.');
+        return redirect()->route('admin.semester.index');
     }
 
     /**
@@ -43,7 +61,9 @@ class SemesterController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $semester = Semester::find($id);
+
+        return view('admin.semester.edit', compact('semester'));
     }
 
     /**
@@ -51,7 +71,17 @@ class SemesterController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $semester = Semester::find($id);
+        $this->validate($request, [
+            'name' => 'required|unique:semesters,name,'.$id,
+        ]);
+
+
+        $semester->update([
+            'name' => $request->name
+        ]);
+        Alert::success('Success', 'Updated Successfull.');
+        return redirect()->route('admin.semester.index');
     }
 
     /**
@@ -59,6 +89,8 @@ class SemesterController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Semester::find($id)->delete();
+        Alert::success('Success', 'Deleted Successfull.');
+        return redirect()->route('admin.semester.index');
     }
 }
