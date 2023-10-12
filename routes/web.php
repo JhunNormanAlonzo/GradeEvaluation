@@ -20,8 +20,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if(Auth::check()){
+        $role = Auth::user()->getRoleNames()->first();
+        if($role == "Admin"){
+            return view('admin.index');
+        }else if($role == "Teacher"){
+
+        }else if($role == "Student"){
+
+        }
+    }else{
+        return view('welcome');
+    }
+
 });
+
 
 Auth::routes();
 

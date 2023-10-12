@@ -40,7 +40,7 @@ class SubjectPrerequisiteController extends Controller
             ]);
         }
 
-        Alert::success('Success', 'Created Successfully.');
+        Alert::info('Pre-requisite', 'Assigned Successfully.');
         return redirect()->route('admin.subject.index');
 
     }

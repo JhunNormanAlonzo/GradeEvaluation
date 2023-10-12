@@ -102,11 +102,11 @@
             </div>
         </div>
     </li>
-    {{-- <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+    <li class="nav-item">
+        <a class="nav-link" href="#">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Assigning Prereq</span></a>
-    </li> --}}
+            <span>Curriculum</span></a>
+    </li>
 
 
     <!-- Divider -->

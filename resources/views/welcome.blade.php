@@ -19,20 +19,31 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Grade Evaluation System !</h1>
                                 </div>
-                                <form class="user">
+                                <form method="POST" class="user" action="{{ route('login') }}">
+                                    @csrf
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user"
-                                            id="exampleInputEmail" aria-describedby="emailHelp"
+                                        <input type="email" name="email"  class="form-control form-control-user @error('email') is-invalid @enderror"
+                                            id="exampleInputEmail" value="{{ old('email') }}" aria-describedby="emailHelp"
                                             placeholder="Enter Email Address...">
+                                            @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password">
+                                        <input type="password" class="form-control form-control-user  @error('password') is-invalid @enderror"
+                                            id="exampleInputPassword" name="password"  placeholder="Password">
+                                            @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                     </div>
 
-                                    <a href="index.html" class="btn btn-primary btn-user btn-block">
+                                    <button  class="btn btn-primary btn-user btn-block">
                                         Login
-                                    </a>
+                                    </button>
 
 
 
