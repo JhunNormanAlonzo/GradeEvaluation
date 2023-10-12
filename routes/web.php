@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\YearLevelController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
