@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\SemesterController;
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\SubjectPrerequisiteController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\YearLevelController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -21,10 +25,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/test', function () {
+Route::get('/master', function () {
     return view('admin.index');
 });
 
+Route::prefix('admin')->as('admin.')->group(function() {
+    Route::resource('/subject-prerequisite', SubjectPrerequisiteController::class)->names('subject.prerequisite');
+    Route::resource('/subject', SubjectController::class)->names('subject');
+    Route::resource('/semester', SemesterController::class)->names('semester');
+    Route::resource('/user', UserController::class)->names('user');
+    Route::resource('/year-level', YearLevelController::class)->names('year-level');
+});
 
-Route::resource('/year-level', YearLevelController::class)->names('year-level');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
