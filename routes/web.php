@@ -25,9 +25,9 @@ Route::get('/', function () {
         if($role == "Admin"){
             return view('admin.index');
         }else if($role == "Teacher"){
-
+            dd("wala pa");
         }else if($role == "Student"){
-
+            dd("wala pa");
         }
     }else{
         return view('welcome');
