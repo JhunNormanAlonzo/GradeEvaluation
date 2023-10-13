@@ -2,7 +2,18 @@
   <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+
+    @php
+        $dashboard_route = "";
+        if (Auth::user()->getRoleNames()->first() == "Admin") {
+            $dashboard_route = "admin.dashboard.index";
+        }else if(Auth::user()->getRoleNames()->first() == "Teacher"){
+            $dashboard_route = "#";
+        }else if(Auth::user()->getRoleNames()->first() == "Student"){
+            $dashboard_route = "#";
+        }
+    @endphp
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route($dashboard_route)}}">
         <div class="sidebar-brand-icon rotate-n-15">
             <img class="img-fluid" src="{{asset('Template/img/OCC_LOGO.png')}}" alt="">
         </div>
@@ -14,7 +25,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{route($dashboard_route)}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>

@@ -14,31 +14,34 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = User::create([
-            'name' => 'Jhun Norman Alonzo',
-            'email' => "alonzojhunnorman@gmail.com",
+         // Ito admin
+         $admin = User::create([
+            'name' => 'Admin',
+            'email' => "admin@gmail.com",
             'password' => bcrypt('admin123')
         ]);
         $role = Role::where('name', 'Admin')->first();
-
         $admin->assignRole($role);
+       //
 
+       // Ito Teacher
         $teacher = User::create([
-            'name' => 'Jessa Mae Matutino',
-            'email' => "jessamaematutino@gmail.com",
-            'password' => bcrypt('admin123')
+            'name' => 'Jeffrey Ubarco',
+            'email' => "jeffrey@gmail.com",
+            'password' => bcrypt('jeff123')
         ]);
         $role = Role::where('name', 'Teacher')->first();
-
         $teacher->assignRole($role);
+       //
 
+       //Ito student
         $student = User::create([
-            'name' => 'Jastine Dale Alonzo',
-            'email' => "jastine@gmail.com",
-            'password' => bcrypt('admin123')
+            'name' => 'Arnel Lacida',
+            'email' => "lacidaarnel@gmail.com",
+            'password' => bcrypt('lacida123')
         ]);
         $role = Role::where('name', 'Student')->first();
-
         $student->assignRole($role);
+       //
     }
 }
