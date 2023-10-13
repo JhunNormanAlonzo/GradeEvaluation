@@ -113,11 +113,23 @@
             </div>
         </div>
     </li>
+
     <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Curriculum</span></a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#curriculumn"
+            aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-book"></i>
+            <span>Curriculum</span>
+        </a>
+        <div id="curriculumn" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Curriculumn:</h6>
+                <a class="collapse-item" href="{{route('admin.curriculumn.create')}}">Set</a>
+                <a class="collapse-item" href="{{route('admin.curriculumn.index')}}">View All</a>
+            </div>
+        </div>
     </li>
+
 
 
     <!-- Divider -->

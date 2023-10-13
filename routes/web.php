@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\CurriculumnController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\SubjectPrerequisiteController;
@@ -46,6 +47,7 @@ Route::prefix('admin')->as('admin.')->group(function () {
     Route::resource('/dashboard', AdminDashboardController::class)->names('dashboard');
     Route::resource('/subject-prerequisite', SubjectPrerequisiteController::class)->names('subject.prerequisite');
     Route::resource('/subject', SubjectController::class)->names('subject');
+    Route::resource('/curriculumn', CurriculumnController::class)->names('curriculumn');
     Route::resource('/semester', SemesterController::class)->names('semester');
     Route::resource('/user', UserController::class)->names('user');
     Route::resource('/year-level', YearLevelController::class)->names('year-level');

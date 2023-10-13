@@ -33,13 +33,6 @@
                                         <th>Delete</th>
                                     </tr>
                                 </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
-                                    </tr>
-                                </tfoot>
                                 <tbody>
                                     @foreach ($year_levels as $year_level)
                                     <tr>

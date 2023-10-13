@@ -16,5 +16,8 @@ class Subject extends Model
         return $this->belongsToMany(Subject::class, 'subject_prerequisites', 'subject_id', 'prerequisite_id');
     }
 
-
+    public function curriculumns()
+    {
+        return $this->belongsToMany(Curriculumn::class, 'curriculumn_subjects', 'subject_id', 'curriculumn_id');
+    }
 }

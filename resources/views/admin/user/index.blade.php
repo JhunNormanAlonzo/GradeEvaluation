@@ -35,15 +35,6 @@
                                         <th>Delete</th>
                                     </tr>
                                 </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
-                                    </tr>
-                                </tfoot>
                                 <tbody>
                                     @foreach ($users as $user)
                                     <tr>
