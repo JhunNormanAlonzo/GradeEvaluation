@@ -33,13 +33,7 @@
                                         <th>Delete</th>
                                     </tr>
                                 </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
-                                    </tr>
-                                </tfoot>
+
                                 <tbody>
                                     @foreach ($semesters as $semester)
                                     <tr>

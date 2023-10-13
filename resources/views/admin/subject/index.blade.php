@@ -34,14 +34,6 @@
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>Subject Code</th>
-                                        <th>Description</th>
-                                        <th>Unit</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </tfoot>
                                 <tbody>
                                     @foreach ($subjects as $subject)
                                     <tr>
