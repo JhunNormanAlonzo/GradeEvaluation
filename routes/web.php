@@ -25,7 +25,7 @@ Route::get('/', function () {
     if (Auth::check()) {
         $role = Auth::user()->getRoleNames()->first();
         if ($role == "Admin") {
-            return view('admin.index');
+            return redirect()->route('admin.dashboard.index');
         } else if ($role == "Teacher") {
             dd("wala pa");
         } else if ($role == "Student") {

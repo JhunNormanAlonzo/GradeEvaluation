@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\YearLevel;
+use App\Models\Semester;
+use App\Models\Subject;
 
 class AdminDashboardController extends Controller
 {
@@ -11,7 +15,13 @@ class AdminDashboardController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $users = User::all();
+        $year_levels = YearLevel::all();
+        $semesters = Semester::all();
+        $subjects = Subject::all();
+
+
+        return view('admin.index', compact('users', 'year_levels', 'semesters', 'subjects'));
     }
 
     /**
