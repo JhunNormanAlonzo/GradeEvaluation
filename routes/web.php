@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\SubjectPrerequisiteController;
@@ -20,19 +21,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    if(Auth::check()){
+    if (Auth::check()) {
         $role = Auth::user()->getRoleNames()->first();
-        if($role == "Admin"){
+        if ($role == "Admin") {
             return view('admin.index');
-        }else if($role == "Teacher"){
+        } else if ($role == "Teacher") {
             dd("wala pa");
-        }else if($role == "Student"){
+        } else if ($role == "Student") {
             dd("wala pa");
         }
-    }else{
+    } else {
         return view('welcome');
     }
-
 });
 
 
@@ -42,7 +42,8 @@ Route::get('/master', function () {
     return view('admin.index');
 });
 
-Route::prefix('admin')->as('admin.')->group(function() {
+Route::prefix('admin')->as('admin.')->group(function () {
+    Route::resource('/dashboard', AdminDashboardController::class)->names('dashboard');
     Route::resource('/subject-prerequisite', SubjectPrerequisiteController::class)->names('subject.prerequisite');
     Route::resource('/subject', SubjectController::class)->names('subject');
     Route::resource('/semester', SemesterController::class)->names('semester');
