@@ -9,18 +9,11 @@
     @endpush
     @section('content')
         @section('title')
-            <h1 class="h3 mb-0 text-gray-800">User</h1>
-            <div class="float-right">
-                <a href="{{route('admin.student.index')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                    <i class="fas fa-user fa-sm text-white-50"></i>
-                    View Students
-                </a>
-                <a href="{{route('admin.teacher.index')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                    <i class="fas fa-user fa-sm text-white-50"></i>
-                    View Teachers
-                </a>
-            </div>
-
+            <h1 class="h3 mb-0 text-gray-800">Teacher</h1>
+            <a href="{{route('admin.teacher.create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                <i class="fas fa-plus fa-sm text-white-50"></i>
+                Create
+            </a>
         @endsection
 
 
@@ -28,36 +21,38 @@
             <div class="col-12">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">User Lists</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Teacher Lists</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
+                                        <th>ID</th>
                                         <th>Name</th>
                                         <th>Email</th>
-                                        <th>Role</th>
+                                        <th>Address</th>
+                                        <th>Section</th>
                                         <th>Edit</th>
                                         <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $user)
+                                    @foreach ($teachers as $teacher)
                                     <tr>
-                                        <td>{{$user->name}}</td>
-                                        <td>{{$user->email}}</td>
-                                        <td>{{$user->getRoleNames()->first()}}</td>
+                                        <td>{{$teacher->id_number}}</td>
+                                        <td>{{$teacher->user->name}}</td>
+                                        <td>{{$teacher->user->email}}</td>
+                                        <td>{{$teacher->address}}</td>
+                                        <td>{{$teacher->section->name}}</td>
                                         <td>
-                                            <a href="{{route('admin.user.edit', [$user->id])}}" class="btn btn-warning btn-sm" >Edit</a>
+                                            <a href="{{route('admin.teacher.edit', [$teacher->id])}}" class="btn btn-warning btn-sm" >Edit</a>
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.user.destroy', $user->id) }}" class="btn btn-danger btn-sm" data-confirm-delete="true">Delete</a>
+                                            <a href="{{ route('admin.teacher.destroy', $teacher->id) }}" class="btn btn-danger btn-sm" data-confirm-delete="true">Delete</a>
                                         </td>
                                     </tr>
                                     @endforeach
-
-
                                 </tbody>
                             </table>
                         </div>
