@@ -47,47 +47,6 @@
                                                 <a href="{{route('admin.subject.edit', [$subject->id])}}" class="btn btn-warning btn-sm" >Edit</a>
                                                 <a href="{{ route('admin.subject.destroy', $subject->id) }}" class="btn btn-danger btn-sm" data-confirm-delete="true">Delete</a>
                                             </div>
-                                            <form action="{{route('admin.subject.prerequisite.store')}}" method="POST">
-                                                @csrf
-                                                @method("POST")
-                                                <div class="modal fade" id="modal{{$subject->id}}">
-                                                    <div class="modal-dialog modal-dialog-scrollable">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Prerequisite for {{$subject->subject_code}}</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                            <div class="row">
-                                                                @foreach ($subjects as $prereq)
-                                                                    @if ($subject->id != $prereq->id)
-                                                                        <div class="col-2">
-
-                                                                            @php
-                                                                                $prereqIds = $subject->prerequisites->pluck('id')->toArray();
-                                                                            @endphp
-                                                                            <input type="text" hidden name="subject_id" id="" value="{{$subject->id}}">
-                                                                            <input type="checkbox" name="prereq[]" value="{{$prereq->id}}" @if (in_array($prereq->id, $prereqIds)) checked @endif>
-                                                                        </div>
-                                                                        <div class="col-10">
-
-                                                                            <small>{{$prereq->subject_code. " - ". $prereq->description}}</small>
-                                                                        </div>
-                                                                    @endif
-                                                                @endforeach
-                                                            </div>
-
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                                                                <button  class="btn btn-primary btn-sm">Save changes</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
                                         </td>
 
                                     </tr>
@@ -102,6 +61,50 @@
             </div>
         </div>
 
+        @foreach ($subjects as $subject)
+        <form action="{{route('admin.subject.prerequisite.store')}}" method="POST">
+            @csrf
+            @method("POST")
+            <div class="modal fade" id="modal{{$subject->id}}">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Prerequisite for {{$subject->subject_code}}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                        <div class="row">
+                            @foreach ($subjects as $prereq)
+                                @if ($subject->id != $prereq->id)
+                                    <div class="col-2">
+
+                                        @php
+                                            $prereqIds = $subject->prerequisites->pluck('id')->toArray();
+                                        @endphp
+                                        <input type="text" hidden name="subject_id" id="" value="{{$subject->id}}">
+                                        <input type="checkbox" name="prereq[]" value="{{$prereq->id}}" @if (in_array($prereq->id, $prereqIds)) checked @endif>
+                                    </div>
+                                    <div class="col-10">
+
+                                        <small>{{$prereq->subject_code. " - ". $prereq->description}}</small>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                            <button  class="btn btn-primary btn-sm">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    @endforeach
+
     @endsection
+
 </x-master-layout>
-z

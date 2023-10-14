@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
+use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -59,7 +61,6 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-
     }
 
     /**
@@ -80,7 +81,7 @@ class UserController extends Controller
         $user = User::find($id);
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
+            'email' => 'required|email|unique:users,email,' . $id,
             'role' => 'required',
         ]);
         $user->update([
@@ -100,8 +101,18 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         $user = User::find($id);
-        $user->delete();
-        Alert::success('Success', 'Deleted Successfull.');
+        if ($user) {
+            if ($user->student) {
+                $user->student->delete();
+            }
+            if ($user->teacher) {
+                $user->teacher->delete();
+            }
+            $user->delete();
+            Alert::success('Success', 'Deleted Successfully.');
+        } else {
+            Alert::error('Error', 'User not found.');
+        }
         return redirect()->route('admin.user.index');
     }
 }

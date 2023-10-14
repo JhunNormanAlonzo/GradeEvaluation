@@ -33,20 +33,12 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
+
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#user"
-            aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link" href="{{route('admin.user.index')}}">
             <i class="fas fa-fw fa-users"></i>
-            <span>User</span>
+            <span>Users</span>
         </a>
-        <div id="user" class="collapse" aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">User:</h6>
-                <a class="collapse-item" href="{{route('admin.user.create')}}">Create</a>
-                <a class="collapse-item" href="{{route('admin.user.index')}}">View All</a>
-            </div>
-        </div>
     </li>
 
     <!-- Nav Item - Pages Collapse Menu -->
@@ -117,7 +109,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#curriculumn"
             aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-fw fa-book"></i>
+            <i class="fas fa-book-reader fa-book"></i>
             <span>Curriculum</span>
         </a>
         <div id="curriculumn" class="collapse" aria-labelledby="headingUtilities"
@@ -130,6 +122,53 @@
         </div>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#section"
+            aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-laptop-code"></i>
+            <span>Section</span>
+        </a>
+        <div id="section" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Section:</h6>
+                <a class="collapse-item" href="{{route('admin.section.create')}}">Create</a>
+                <a class="collapse-item" href="{{route('admin.section.index')}}">View All</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#student"
+            aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-user"></i>
+            <span>Student</span>
+        </a>
+        <div id="student" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Student:</h6>
+                <a class="collapse-item" href="{{route('admin.student.create')}}">Create</a>
+                <a class="collapse-item" href="{{route('admin.student.index')}}">View All</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#teacher"
+            aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-user-graduate"></i>
+            <span>Teacher</span>
+        </a>
+        <div id="teacher" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Teacher:</h6>
+                <a class="collapse-item" href="{{route('admin.teacher.create')}}">Create</a>
+                <a class="collapse-item" href="{{route('admin.teacher.index')}}">View All</a>
+            </div>
+        </div>
+    </li>
 
 
     <!-- Divider -->

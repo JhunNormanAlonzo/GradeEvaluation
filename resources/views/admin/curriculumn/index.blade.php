@@ -41,59 +41,6 @@
                                         <td>{{$curriculumn->yearLevel->name}}</td>
                                         <td>
                                             <button data-toggle="modal" data-target="#showSubject{{$curriculumn->id}}" class="badge btn btn-success">subjects</button>
-
-                                            <div class="modal fade" id="showSubject{{$curriculumn->id}}">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        Subjects
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            @foreach ($curriculumn->subjects as $sub)
-                                                                <div class="col-4 ">
-                                                                    <button data-toggle="modal" data-target="#prereq{{$sub->id}}" class="badge btn btn-info">PREREQ</button>
-                                                                    {{$sub->subject_code}}
-
-                                                                    <div class="modal" id="prereq{{$sub->id}}">
-                                                                        <div class="modal-dialog">
-                                                                            <div class="modal-content">
-                                                                                <div class="modal-header">
-                                                                                    Prerequisites
-                                                                                </div>
-                                                                                <div class="modal-body">
-                                                                                    <table class="table">
-                                                                                        <thead>
-                                                                                            <tr>
-                                                                                                <th>Subject Code</th>
-                                                                                                <th>Description</th>
-                                                                                            </tr>
-                                                                                        </thead>
-                                                                                        <tbody>
-                                                                                            @forelse ($sub->prerequisites as $prereq)
-                                                                                                <tr>
-                                                                                                    <td>{{$prereq->subject_code}}</td>
-                                                                                                    <td>{{$prereq->description}}</td>
-                                                                                                </tr>
-                                                                                            @empty
-                                                                                                <tr>
-                                                                                                    <td colspan="2" class="text-center">No prerequisites available.</td>
-                                                                                                </tr>
-                                                                                            @endforelse
-                                                                                        </tbody>
-                                                                                    </table>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-8 ">{{$sub->description}}</div>
-                                                            @endforeach
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         </td>
 
                                         <td>
@@ -108,5 +55,62 @@
                 </div>
             </div>
         </div>
+
+        @foreach ($curriculumns as $curriculumn)
+            <div class="modal fade" id="showSubject{{$curriculumn->id}}">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            Subjects
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                @foreach ($curriculumn->subjects as $sub)
+                                    <div class="col-4 ">
+                                        <button data-toggle="modal" data-target="#prereq{{$sub->id}}" class="badge btn btn-info">PREREQ</button>
+                                        {{$sub->subject_code}}
+
+                                        <div class="modal" id="prereq{{$sub->id}}">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        Prerequisites
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Subject Code</th>
+                                                                    <th>Description</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @forelse ($sub->prerequisites as $prereq)
+                                                                    <tr>
+                                                                        <td>{{$prereq->subject_code}}</td>
+                                                                        <td>{{$prereq->description}}</td>
+                                                                    </tr>
+                                                                @empty
+                                                                    <tr>
+                                                                        <td colspan="2" class="text-center">No prerequisites available.</td>
+                                                                    </tr>
+                                                                @endforelse
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-8 ">{{$sub->description}}</div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
     @endsection
+
+
 </x-master-layout>
